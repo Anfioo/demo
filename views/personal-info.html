@@ -1,0 +1,192 @@
+<div class="personal-info-container">
+    <div class="info-card">
+        <div class="info-header">
+            <div class="avatar">
+                <img src="../resources/images/default-avatar.png" alt="用户头像">
+                <button class="change-avatar"><i class="fas fa-camera"></i></button>
+            </div>
+            <div class="basic-info">
+                <h2>张应胜</h2>
+                <p>学号：2022117356</p>
+                <p>计算机工程学院</p>
+            </div>
+        </div>
+        
+        <div class="info-content">
+            <h3>基本信息</h3>
+            <div class="info-grid">
+                <div class="info-item">
+                    <label>姓名</label>
+                    <span>张应胜</span>
+                </div>
+                <div class="info-item">
+                    <label>性别</label>
+                    <span>男</span>
+                </div>
+                <div class="info-item">
+                    <label>民族</label>
+                    <span>汉族</span>
+                </div>
+                <div class="info-item">
+                    <label>出生日期</label>
+                    <span>2003-12-22</span>
+                </div>
+                <div class="info-item">
+                    <label>身份证号</label>
+                    <span>3414************73</span>
+                </div>
+                <div class="info-item">
+                    <label>政治面貌</label>
+                    <span>共青团员</span>
+                </div>
+            </div>
+
+            <h3>学籍信息</h3>
+            <div class="info-grid">
+                <div class="info-item">
+                    <label>学院</label>
+                    <span>计算机工程学院</span>
+                </div>
+                <div class="info-item">
+                    <label>专业</label>
+                    <span>软件工程</span>
+                </div>
+                <div class="info-item">
+                    <label>班级</label>
+                    <span>软工2212班</span>
+                </div>
+                <div class="info-item">
+                    <label>学制</label>
+                    <span>4年</span>
+                </div>
+                <div class="info-item">
+                    <label>入学时间</label>
+                    <span>2022-09-01</span>
+                </div>
+                <div class="info-item">
+                    <label>学籍状态</label>
+                    <span>在读</span>
+                </div>
+            </div>
+
+            <h3>联系方式</h3>
+            <div class="info-grid">
+                <div class="info-item">
+                    <label>手机号码</label>
+                    <span>153****9402</span>
+                    <button class="edit-btn"><i class="fas fa-edit"></i></button>
+                </div>
+                <div class="info-item">
+                    <label>电子邮箱</label>
+                    <span>348***506@qq.com</span>
+                    <button class="edit-btn"><i class="fas fa-edit"></i></button>
+                </div>
+                <div class="info-item">
+                    <label>家庭住址</label>
+                    <span>安徽省马鞍山市...</span>
+                    <button class="edit-btn"><i class="fas fa-edit"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.personal-info-container {
+    padding: 20px;
+    background: #f0f2f5;
+    min-height: calc(100vh - 56px);
+}
+
+.info-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.info-header {
+    display: flex;
+    padding: 30px;
+    background: linear-gradient(135deg, #3498db, #2c3e50);
+    color: white;
+}
+
+.avatar {
+    position: relative;
+    margin-right: 30px;
+}
+
+.avatar img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 4px solid rgba(255,255,255,0.3);
+}
+
+.change-avatar {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: rgba(0,0,0,0.5);
+    border: none;
+    color: white;
+    padding: 8px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.basic-info h2 {
+    margin: 0 0 10px 0;
+}
+
+.basic-info p {
+    margin: 5px 0;
+    opacity: 0.8;
+}
+
+.info-content {
+    padding: 30px;
+}
+
+.info-content h3 {
+    color: #2c3e50;
+    margin: 30px 0 20px 0;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+}
+
+.info-item label {
+    color: #7f8c8d;
+    width: 100px;
+}
+
+.info-item span {
+    flex: 1;
+    color: #2c3e50;
+}
+
+.edit-btn {
+    background: none;
+    border: none;
+    color: #3498db;
+    cursor: pointer;
+    padding: 5px;
+    margin-left: 10px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.info-item:hover .edit-btn {
+    opacity: 1;
+}
+</style> 

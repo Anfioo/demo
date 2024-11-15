@@ -1,0 +1,324 @@
+<div class="classroom-booking-container">
+    <div class="booking-header">
+        <h2>教室借用申请</h2>
+        <button class="new-booking-btn">
+            <i class="fas fa-plus"></i> 新建申请
+        </button>
+    </div>
+
+    <div class="booking-content">
+        <div class="booking-filters">
+            <div class="filter-group">
+                <select class="building-select">
+                    <option value="">所有教学楼</option>
+                    <option value="A">N8教学楼</option>
+                    <option value="B">N6教学楼</option>
+                    <option value="C">N4教学楼</option>
+                    <option value="D">N5教学楼</option>
+                </select>
+                <select class="room-type-select">
+                    <option value="">所有教室类型</option>
+                    <option value="classroom">普通教室</option>
+                    <option value="lab">实验室</option>
+                    <option value="meeting">会议室</option>
+                </select>
+                <input type="date" class="date-select">
+            </div>
+            <div class="search-box">
+                <input type="text" placeholder="搜索教室...">
+                <i class="fas fa-search"></i>
+            </div>
+        </div>
+
+        <div class="room-list">
+            <div class="room-card available">
+                <div class="room-info">
+                    <h3>A301</h3>
+                    <div class="room-details">
+                        <span><i class="fas fa-users"></i> 容量：120人</span>
+                        <span><i class="fas fa-desktop"></i> 多媒体教室</span>
+                    </div>
+                </div>
+                <div class="room-schedule">
+                    <div class="time-slots">
+                        <div class="time-slot available">
+                            <span>8:00-10:00</span>
+                            <button class="book-btn">申请</button>
+                        </div>
+                        <div class="time-slot booked">
+                            <span>10:00-12:00</span>
+                            <span class="status">已预约</span>
+                        </div>
+                        <!-- 更多时间段 -->
+                    </div>
+                </div>
+            </div>
+            <!-- 更多教室卡片 -->
+        </div>
+    </div>
+
+    <!-- 申请表单弹窗 -->
+    <div class="booking-modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>教室借用申请</h3>
+                <button class="close-btn"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <form class="booking-form">
+                    <div class="form-group">
+                        <label>申请人</label>
+                        <input type="text" value="张三" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>教室</label>
+                        <input type="text" value="A301" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>使用时间</label>
+                        <div class="time-select">
+                            <input type="date" required>
+                            <select required>
+                                <option>8:00-10:00</option>
+                                <option>10:00-12:00</option>
+                                <!-- 更多时间选项 -->
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>用途说明</label>
+                        <textarea required placeholder="请简要说明使用用途..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>联系方式</label>
+                        <input type="tel" required placeholder="请输入手机号码">
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="submit-btn">提交申请</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.classroom-booking-container {
+    padding: 20px;
+    background: #f0f2f5;
+    min-height: calc(100vh - 56px);
+}
+
+.booking-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.new-booking-btn {
+    padding: 10px 20px;
+    background: #3498db;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.booking-filters {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.filter-group {
+    display: flex;
+    gap: 15px;
+}
+
+.filter-group select,
+.filter-group input {
+    padding: 8px 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    min-width: 150px;
+}
+
+.search-box {
+    position: relative;
+    width: 250px;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 8px 35px 8px 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.search-box i {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #95a5a6;
+}
+
+.room-list {
+    display: grid;
+    gap: 20px;
+}
+
+.room-card {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+}
+
+.room-info h3 {
+    margin: 0 0 10px 0;
+    color: #2c3e50;
+}
+
+.room-details {
+    display: flex;
+    gap: 20px;
+    color: #7f8c8d;
+    font-size: 14px;
+}
+
+.room-details i {
+    margin-right: 5px;
+    color: #3498db;
+}
+
+.room-schedule {
+    margin-top: 20px;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+}
+
+.time-slots {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.time-slot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    background: #f8f9fa;
+    border-radius: 4px;
+}
+
+.time-slot.available .book-btn {
+    padding: 5px 10px;
+    background: #3498db;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.time-slot.booked {
+    background: #f5f6fa;
+}
+
+.time-slot.booked .status {
+    color: #e74c3c;
+    font-size: 12px;
+}
+
+.booking-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+}
+
+.modal-header {
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #7f8c8d;
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #2c3e50;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 8px 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.time-select {
+    display: flex;
+    gap: 15px;
+}
+
+.time-select input,
+.time-select select {
+    flex: 1;
+}
+
+textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+.form-actions {
+    text-align: right;
+    margin-top: 30px;
+}
+
+.submit-btn {
+    padding: 10px 30px;
+    background: #3498db;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+</style>

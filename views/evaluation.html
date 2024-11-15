@@ -1,0 +1,496 @@
+<div class="evaluation-container">
+    <div class="evaluation-header">
+        <h2>教学评价</h2>
+        <div class="semester-info">
+            <span>2023-2024学年第二学期</span>
+            <div class="progress-info">
+                已完成评价：<span class="completed">3</span>/<span class="total">8</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="course-evaluation-list">
+        <!-- 待评价课程 -->
+        <div class="evaluation-card pending">
+            <div class="course-info">
+                <h3>数据结构与算法</h3>
+                <div class="teacher-info">
+                    <i class="fas fa-user"></i> 李教授
+                    <span class="separator">|</span>
+                    <i class="fas fa-clock"></i> 周二 1-2节
+                </div>
+            </div>
+            <div class="evaluation-status">
+                <span class="status-badge pending">待评价</span>
+                <button class="evaluate-btn">开始评价</button>
+            </div>
+        </div>
+
+        <!-- 已评价课程 -->
+        <div class="evaluation-card completed">
+            <div class="course-info">
+                <h3>计算机网络</h3>
+                <div class="teacher-info">
+                    <i class="fas fa-user"></i> 张教授
+                    <span class="separator">|</span>
+                    <i class="fas fa-clock"></i> 周三 3-4节
+                </div>
+            </div>
+            <div class="evaluation-status">
+                <span class="status-badge completed">已完成</span>
+                <button class="view-btn">查看评价</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 评价表单弹窗 -->
+    <div class="evaluation-modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>教学评价 - 数据结构与算法</h3>
+                <button class="close-btn"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <form class="evaluation-form">
+                    <div class="evaluation-item">
+                        <h4>教学态度</h4>
+                        <div class="rating">
+                            <input type="radio" name="attitude" value="5" id="attitude5">
+                            <label for="attitude5">5分</label>
+                            <input type="radio" name="attitude" value="4" id="attitude4">
+                            <label for="attitude4">4分</label>
+                            <input type="radio" name="attitude" value="3" id="attitude3">
+                            <label for="attitude3">3分</label>
+                            <input type="radio" name="attitude" value="2" id="attitude2">
+                            <label for="attitude2">2分</label>
+                            <input type="radio" name="attitude" value="1" id="attitude1">
+                            <label for="attitude1">1分</label>
+                        </div>
+                    </div>
+
+                    <div class="evaluation-item">
+                        <h4>教学内容</h4>
+                        <div class="rating">
+                            <input type="radio" name="content" value="5" id="content5" required>
+                            <label for="content5">5分</label>
+                            <input type="radio" name="content" value="4" id="content4">
+                            <label for="content4">4分</label>
+                            <input type="radio" name="content" value="3" id="content3">
+                            <label for="content3">3分</label>
+                            <input type="radio" name="content" value="2" id="content2">
+                            <label for="content2">2分</label>
+                            <input type="radio" name="content" value="1" id="content1">
+                            <label for="content1">1分</label>
+                        </div>
+                    </div>
+
+                    <div class="evaluation-item">
+                        <h4>教学效果</h4>
+                        <div class="rating">
+                            <input type="radio" name="effect" value="5" id="effect5" required>
+                            <label for="effect5">5分</label>
+                            <input type="radio" name="effect" value="4" id="effect4">
+                            <label for="effect4">4分</label>
+                            <input type="radio" name="effect" value="3" id="effect3">
+                            <label for="effect3">3分</label>
+                            <input type="radio" name="effect" value="2" id="effect2">
+                            <label for="effect2">2分</label>
+                            <input type="radio" name="effect" value="1" id="effect1">
+                            <label for="effect1">1分</label>
+                        </div>
+                    </div>
+
+                    <div class="evaluation-item">
+                        <h4>其他建议</h4>
+                        <textarea placeholder="请输入您的建议和意见..."></textarea>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="submit-btn">提交评价</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.evaluation-container {
+    padding: 20px;
+    background: #f0f2f5;
+    min-height: calc(100vh - 56px);
+}
+
+.evaluation-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.semester-info {
+    text-align: right;
+}
+
+.progress-info {
+    margin-top: 5px;
+    color: #7f8c8d;
+}
+
+.completed {
+    color: #27ae60;
+    font-weight: bold;
+}
+
+.course-evaluation-list {
+    display: grid;
+    gap: 20px;
+}
+
+.evaluation-card {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+}
+
+.course-info h3 {
+    margin: 0 0 10px 0;
+    color: #2c3e50;
+}
+
+.teacher-info {
+    color: #7f8c8d;
+    font-size: 14px;
+}
+
+.teacher-info i {
+    margin-right: 5px;
+    color: #3498db;
+}
+
+.separator {
+    margin: 0 10px;
+    color: #ddd;
+}
+
+.evaluation-status {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+}
+
+.status-badge {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+.status-badge.pending {
+    background: #f1c40f;
+    color: white;
+}
+
+.status-badge.completed {
+    background: #2ecc71;
+    color: white;
+}
+
+.evaluate-btn, .view-btn {
+    padding: 8px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.evaluate-btn {
+    background: #3498db;
+    color: white;
+}
+
+.view-btn {
+    background: #f8f9fa;
+    color: #2c3e50;
+}
+
+.evaluation-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.modal-header {
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #7f8c8d;
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+.evaluation-item {
+    margin-bottom: 30px;
+}
+
+.evaluation-item h4 {
+    margin: 0 0 15px 0;
+    color: #2c3e50;
+}
+
+.rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    gap: 20px;
+}
+
+.rating input {
+    display: none;
+}
+
+.rating label {
+    cursor: pointer;
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.rating input:checked ~ label {
+    background: #3498db;
+    color: white;
+    border-color: #3498db;
+}
+
+textarea {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+.form-actions {
+    text-align: right;
+    margin-top: 20px;
+}
+
+.submit-btn {
+    padding: 10px 30px;
+    background: #3498db;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.submit-btn:hover {
+    background: #2980b9;
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // 获取DOM元素
+    const evaluateButtons = document.querySelectorAll('.evaluate-btn');
+    const modal = document.querySelector('.evaluation-modal');
+    const closeBtn = document.querySelector('.close-btn');
+    const evaluationForm = document.querySelector('.evaluation-form');
+    const courseEvaluationList = document.querySelector('.course-evaluation-list');
+    const completedCount = document.querySelector('.completed');
+    const totalCount = document.querySelector('.total');
+
+    // 课程评价数据
+    let evaluations = [
+        {
+            id: 1,
+            courseName: '数据结构与算法',
+            teacher: '李教授',
+            time: '周二 1-2节',
+            status: 'pending'
+        },
+        {
+            id: 2,
+            courseName: '计算机网络',
+            teacher: '张教授',
+            time: '周三 3-4节',
+            status: 'completed',
+            evaluation: {
+                attitude: 5,
+                content: 4,
+                effect: 5,
+                suggestion: '讲解详细，案例丰富'
+            }
+        }
+    ];
+
+    // 渲染评价列表
+    function renderEvaluationList() {
+        courseEvaluationList.innerHTML = '';
+        let completed = 0;
+
+        evaluations.forEach(evaluation => {
+            if (evaluation.status === 'completed') completed++;
+            
+            const card = document.createElement('div');
+            card.className = `evaluation-card ${evaluation.status}`;
+            card.innerHTML = `
+                <div class="course-info">
+                    <h3>${evaluation.courseName}</h3>
+                    <div class="teacher-info">
+                        <i class="fas fa-user"></i> ${evaluation.teacher}
+                        <span class="separator">|</span>
+                        <i class="fas fa-clock"></i> ${evaluation.time}
+                    </div>
+                </div>
+                <div class="evaluation-status">
+                    <span class="status-badge ${evaluation.status}">
+                        ${evaluation.status === 'pending' ? '待评价' : '已完成'}
+                    </span>
+                    <button class="${evaluation.status === 'pending' ? 'evaluate-btn' : 'view-btn'}" 
+                            data-id="${evaluation.id}">
+                        ${evaluation.status === 'pending' ? '开始评价' : '查看评价'}
+                    </button>
+                </div>
+            `;
+            courseEvaluationList.appendChild(card);
+        });
+
+        // 更新完成数量
+        completedCount.textContent = completed;
+        totalCount.textContent = evaluations.length;
+
+        // 重新绑定按钮事件
+        bindButtonEvents();
+    }
+
+    // 绑定按钮事件
+    function bindButtonEvents() {
+        document.querySelectorAll('.evaluate-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const courseId = button.getAttribute('data-id');
+                const course = evaluations.find(e => e.id == courseId);
+                if (course) {
+                    openEvaluationModal(course);
+                }
+            });
+        });
+
+        document.querySelectorAll('.view-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const courseId = button.getAttribute('data-id');
+                const course = evaluations.find(e => e.id == courseId);
+                if (course) {
+                    viewEvaluation(course);
+                }
+            });
+        });
+    }
+
+    // 打开评价模态框
+    function openEvaluationModal(course) {
+        modal.querySelector('.modal-header h3').textContent = `教学评价 - ${course.courseName}`;
+        evaluationForm.setAttribute('data-course-id', course.id);
+        modal.style.display = 'flex';
+        
+        // 重置表单
+        evaluationForm.reset();
+    }
+
+    // 查看评价详情
+    function viewEvaluation(course) {
+        modal.querySelector('.modal-header h3').textContent = `评价详情 - ${course.courseName}`;
+        
+        // 填充评价数据
+        if (course.evaluation) {
+            modal.querySelector(`input[name="attitude"][value="${course.evaluation.attitude}"]`).checked = true;
+            modal.querySelector(`input[name="content"][value="${course.evaluation.content}"]`).checked = true;
+            modal.querySelector(`input[name="effect"][value="${course.evaluation.effect}"]`).checked = true;
+            modal.querySelector('textarea').value = course.evaluation.suggestion;
+        }
+        
+        // 禁用所有输入
+        modal.querySelectorAll('input, textarea').forEach(input => input.disabled = true);
+        modal.querySelector('.submit-btn').style.display = 'none';
+        
+        modal.style.display = 'flex';
+    }
+
+    // 提交评价表单
+    evaluationForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const courseId = evaluationForm.getAttribute('data-course-id');
+        const course = evaluations.find(e => e.id == courseId);
+        
+        if (course) {
+            // 获取评价数据
+            const evaluation = {
+                attitude: parseInt(evaluationForm.querySelector('input[name="attitude"]:checked').value),
+                content: parseInt(evaluationForm.querySelector('input[name="content"]:checked').value),
+                effect: parseInt(evaluationForm.querySelector('input[name="effect"]:checked').value),
+                suggestion: evaluationForm.querySelector('textarea').value
+            };
+
+            // 更新评价状态
+            course.status = 'completed';
+            course.evaluation = evaluation;
+
+            // 关闭模态框
+            modal.style.display = 'none';
+            
+            // 重新渲染列表
+            renderEvaluationList();
+
+            // 显示成功提示
+            alert('评价提交成功！');
+        }
+    });
+
+    // 关闭模态框
+    closeBtn.addEventListener('click', () => {
+        modal.style.display = 'none';
+        // 启用所有输入
+        modal.querySelectorAll('input, textarea').forEach(input => input.disabled = false);
+        modal.querySelector('.submit-btn').style.display = 'block';
+    });
+
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            closeBtn.click();
+        }
+    });
+
+    // 初始渲染
+    renderEvaluationList();
+});
+</script>

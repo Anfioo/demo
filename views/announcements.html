@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>公告信息</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        .carousel {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+            margin-bottom: 30px;
+            border-radius: 8px;
+        }
+
+        .carousel-container {
+            display: flex;
+            width: 300%;
+            height: 100%;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-slide {
+            width: 33.333%;
+            height: 100%;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .carousel-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 15px;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: background 0.3s;
+        }
+
+        .carousel-button:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .prev { left: 20px; }
+        .next { right: 20px; }
+
+        .carousel-dots {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .dot.active {
+            background: white;
+        }
+
+        .announcements {
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .announcement-list {
+            margin-top: 20px;
+        }
+
+        .announcement-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .announcement-title {
+            color: #333;
+            text-decoration: none;
+        }
+
+        .announcement-title:hover {
+            color: #3498db;
+        }
+
+        .announcement-date {
+            color: #999;
+            font-size: 14px;
+        }
+
+        .quick-access {
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+        }
+
+        .access-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .access-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #2c3e50;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .access-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .access-item i {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #3498db;
+        }
+
+        /* 添加音乐播放器样式 */
+        .music-player {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.2);
+        }
+
+        .custom-player {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .play-btn {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .play-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+
+        .play-btn i {
+            color: white;
+            font-size: 18px;
+        }
+
+        .progress-area {
+            flex: 1;
+        }
+
+        .progress-bar {
+            height: 5px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 3px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .progress {
+            height: 100%;
+            width: 0%;
+            background: white;
+            border-radius: 3px;
+            position: relative;
+        }
+
+        .progress::before {
+            content: '';
+            position: absolute;
+            right: -8px;
+            top: -6px;
+            width: 16px;
+            height: 16px;
+            background: white;
+            border-radius: 50%;
+            display: none;
+        }
+
+        .progress-bar:hover .progress::before {
+            display: block;
+        }
+
+        .time {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            color: rgba(255,255,255,0.8);
+            margin-top: 5px;
+        }
+
+        .controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: white;
+        }
+
+        .volume-btn {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+        }
+
+        .volume-btn:hover {
+            opacity: 0.8;
+        }
+
+        .volume-slider {
+            width: 80px;
+            height: 4px;
+            -webkit-appearance: none;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 2px;
+            cursor: pointer;
+        }
+
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 12px;
+            height: 12px;
+            background: white;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .volume-slider::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+        }
+
+        .music-title {
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .music-subtitle {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 14px;
+        }
+
+        /* 添加学校风采样式 */
+        .school-showcase {
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+            margin: 30px 0;
+        }
+
+        .school-showcase h2 {
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+
+        .showcase-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .video-card {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #eee;
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-top: 56.25%;
+            background: #fff;
+        }
+
+        .video-wrapper video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: #fff;
+            -webkit-filter: none;
+            filter: none;
+        }
+
+        .video-info {
+            padding: 20px;
+            background: #fff;
+        }
+
+        .video-info h3 {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .video-info p {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+
+        .video-date {
+            color: #999;
+            font-size: 12px;
+        }
+
+        /* 视频控件样式优化 */
+        video::-webkit-media-controls-enclosure,
+        video::-webkit-media-controls-panel,
+        video::-webkit-media-controls-overlay-play-button,
+        video::-webkit-media-controls {
+            display: none !important;
+        }
+
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .showcase-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .video-card {
+                max-width: 100%;
+            }
+        }
+
+        .video-controls {
+            padding: 10px 15px;
+            background: #fff;
+            border-bottom: 1px solid #eee;
+        }
+
+        .video-progress {
+            margin-bottom: 10px;
+        }
+
+        .video-progress .progress-bar {
+            height: 4px;
+            background: #eee;
+            border-radius: 2px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .video-progress .progress {
+            height: 100%;
+            background: #3498db;
+            border-radius: 2px;
+            width: 0;
+        }
+
+        .video-progress .time {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .control-buttons {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .play-btn {
+            background: none;
+            border: none;
+            color: #3498db;
+            cursor: pointer;
+            padding: 5px;
+            font-size: 16px;
+        }
+
+        .play-btn:hover {
+            color: #2980b9;
+        }
+
+        .volume-control {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .volume-btn {
+            background: none;
+            border: none;
+            color: #333;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .volume-slider {
+            width: 80px;
+            height: 4px;
+            -webkit-appearance: none;
+            background: #eee;
+            border-radius: 2px;
+            cursor: pointer;
+        }
+
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 12px;
+            height: 12px;
+            background: #3498db;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        /* 视频控件样式优化 */
+        .video-card .control-buttons .play-btn {
+            background: none;
+            border: none;
+            color: #3498db !important;  /* 使用 !important 确保覆盖其他样式 */
+            cursor: pointer;
+            padding: 5px;
+            font-size: 16px;
+            transform: none;  /* 移除可能的变换效果 */
+        }
+
+        .video-card .control-buttons .play-btn:hover {
+            color: #2980b9 !important;
+            background: none;  /* 确保hover时背景保持透明 */
+            transform: none;  /* 确保hover时不会有缩放效果 */
+        }
+
+        /* 确保视频控件中的图标颜色正确 */
+        .video-card .control-buttons .play-btn i {
+            color: #3498db !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- 更新音乐播放器HTML结构 -->
+    <div class="music-player">
+        <div class="music-info">
+            <div class="music-title">湖北文理学院校歌</div>
+            <div class="music-subtitle">校歌播放 ♪</div>
+        </div>
+        <div class="custom-player">
+            <button class="play-btn">
+                <i class="fas fa-play"></i>
+            </button>
+            <div class="progress-area">
+                <div class="progress-bar">
+                    <div class="progress"></div>
+                </div>
+                <div class="time">
+                    <span class="current">0:00</span>
+                    <span class="duration">0:00</span>
+                </div>
+            </div>
+            <div class="controls">
+                <button class="volume-btn">
+                    <i class="fas fa-volume-up"></i>
+                </button>
+                <input type="range" class="volume-slider" min="0" max="100" value="100">
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <section class="carousel">
+            <div class="carousel-container">
+                <div class="carousel-slide">
+                    <img src="../resources/images/banner1.jpg" alt="教务系统公告">
+                </div>
+                <div class="carousel-slide">
+                    <img src="../resources/images/banner2.jpg" alt="选课通知">
+                </div>
+                <div class="carousel-slide">
+                    <img src="../resources/images/banner3.jpg" alt="系统更新">
+                </div>
+            </div>
+            <button class="carousel-button prev" aria-label="上一张"><i class="fas fa-chevron-left"></i></button>
+            <button class="carousel-button next" aria-label="下一张"><i class="fas fa-chevron-right"></i></button>
+            <div class="carousel-dots"></div>
+        </section>
+
+        <section class="school-showcase">
+            <h2>学校风采</h2>
+            <div class="showcase-container">
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <video preload="metadata">
+                            <source src="../resources/videos/1.mp4" type="video/mp4">
+                            您的浏览器不支持视频播放。
+                        </video>
+                    </div>
+                    <div class="video-controls">
+                        <div class="video-progress">
+                            <div class="progress-bar">
+                                <div class="progress"></div>
+                            </div>
+                            <div class="time">
+                                <span class="current-time">0:00</span>
+                                <span class="duration">0:00</span>
+                            </div>
+                        </div>
+                        <div class="control-buttons">
+                            <button class="play-btn">
+                                <i class="fas fa-play"></i>
+                            </button>
+                            <div class="volume-control">
+                                <button class="volume-btn">
+                                    <i class="fas fa-volume-up"></i>
+                                </button>
+                                <input type="range" class="volume-slider" min="0" max="100" value="100">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="video-info">
+                        <h3>校园生活掠影</h3>
+                        <p>湖文的学长学姐分享自己的专业心得体会啦，干货满满～</p>
+                        <span class="video-date">2024-03-15</span>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <video preload="metadata">
+                            <source src="../resources/videos/2.mp4" type="video/mp4">
+                            您的浏览器不支持视频播放。
+                        </video>
+                    </div>
+                    <div class="video-controls">
+                        <div class="video-progress">
+                            <div class="progress-bar">
+                                <div class="progress"></div>
+                            </div>
+                            <div class="time">
+                                <span class="current-time">0:00</span>
+                                <span class="duration">0:00</span>
+                            </div>
+                        </div>
+                        <div class="control-buttons">
+                            <button class="play-btn">
+                                <i class="fas fa-play"></i>
+                            </button>
+                            <div class="volume-control">
+                                <button class="volume-btn">
+                                    <i class="fas fa-volume-up"></i>
+                                </button>
+                                <input type="range" class="volume-slider" min="0" max="100" value="100">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="video-info">
+                        <h3>学术讲座实况</h3>
+                        <p>大师论坛与学术交流活动精彩回放</p>
+                        <span class="video-date">2024-03-10</span>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <video preload="metadata">
+                            <source src="../resources/videos/3.mp4" type="video/mp4">
+                            您的浏览器不支持视频播放。
+                        </video>
+                    </div>
+                    <div class="video-controls">
+                        <div class="video-progress">
+                            <div class="progress-bar">
+                                <div class="progress"></div>
+                            </div>
+                            <div class="time">
+                                <span class="current-time">0:00</span>
+                                <span class="duration">0:00</span>
+                            </div>
+                        </div>
+                        <div class="control-buttons">
+                            <button class="play-btn">
+                                <i class="fas fa-play"></i>
+                            </button>
+                            <div class="volume-control">
+                                <button class="volume-btn">
+                                    <i class="fas fa-volume-up"></i>
+                                </button>
+                                <input type="range" class="volume-slider" min="0" max="100" value="100">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="video-info">
+                        <h3>校园文化活动</h3>
+                        <p>丰富多彩的校园文化活动剪影</p>
+                        <span class="video-date">2024-03-05</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="announcements">
+            <h2>通知公告</h2>
+            <div class="announcement-list">
+                <!-- 示例公告 -->
+            </div>
+        </section>
+
+        <section class="quick-access">
+            <h2>快速通道</h2>
+            <div class="access-grid">
+                <a href="course-plan.html" class="access-item router">
+                    <i class="fas fa-book"></i>
+                    <span>选课系统</span>
+                </a>
+                <a href="course-grades.html" class="access-item router">
+                    <i class="fas fa-chart-line"></i>
+                    <span>成绩查询</span>
+                </a>
+                <a href="teaching-calendar.html" class="access-item router">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>教学日历</span>
+                </a>
+                <a href="evaluation.html" class="access-item router">
+                    <i class="fas fa-star"></i>
+                    <span>教学评价</span>
+                </a>
+                <a href="messages.html" class="access-item router">
+                    <i class="fas fa-envelope"></i>
+                    <span>留言系统</span>
+                </a>
+                <a href="classroom-booking.html" class="access-item router">
+                    <i class="fas fa-door-open"></i>
+                    <span>教室借用</span>
+                </a>
+                <a href="training-program.html" class="access-item router">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>培养方案</span>
+                </a>
+                <a href="personal-info.html" class="access-item router">
+                    <i class="fas fa-user"></i>
+                    <span>个人信息</span>
+                </a>
+                <a href="student-card.html" class="access-item router">
+                    <i class="fas fa-id-card"></i>
+                    <span>学籍卡片</span>
+                </a>
+                <a href="exam-grades.html" class="access-item router">
+                    <i class="fas fa-file-alt"></i>
+                    <span>考试成绩</span>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // 轮播图功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.querySelector('.carousel-container');
+            const slides = document.querySelectorAll('.carousel-slide');
+            const prevButton = document.querySelector('.prev');
+            const nextButton = document.querySelector('.next');
+            const dotsContainer = document.querySelector('.carousel-dots');
+            
+            let currentSlide = 0;
+            const slideCount = slides.length;
+
+            // 创建轮播点
+            for (let i = 0; i < slideCount; i++) {
+                const dot = document.createElement('div');
+                dot.classList.add('dot');
+                if (i === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => goToSlide(i));
+                dotsContainer.appendChild(dot);
+            }
+
+            // 更新轮播点状态
+            function updateDots() {
+                document.querySelectorAll('.dot').forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentSlide);
+                });
+            }
+
+            // 切换到指定幻灯片
+            function goToSlide(n) {
+                currentSlide = n;
+                container.style.transform = `translateX(-${currentSlide * 33.333}%)`;
+                updateDots();
+            }
+
+            // 下一张
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % slideCount;
+                goToSlide(currentSlide);
+            }
+
+            // 上一张
+            function prevSlide() {
+                currentSlide = (currentSlide - 1 + slideCount) % slideCount;
+                goToSlide(currentSlide);
+            }
+
+            // 绑定按钮事件
+            prevButton.addEventListener('click', prevSlide);
+            nextButton.addEventListener('click', nextSlide);
+
+            // 自动轮播
+            setInterval(nextSlide, 5000);
+
+            // 加载示例公告
+            const announcements = [
+                { title: "2024学年第二学期选课通知", date: "2024-02-20" },
+                { title: "关于开展2024届毕业论文答辩的通知", date: "2024-02-18" },
+                { title: "寒假放假安排通知", date: "2024-02-15" },
+                { title: "教务系维护通知", date: "2024-02-10" },
+                { title: "期末考试安排公告", date: "2024-02-05" }
+            ];
+
+            const announcementList = document.querySelector('.announcement-list');
+            announcements.forEach(announcement => {
+                const item = document.createElement('div');
+                item.className = 'announcement-item';
+                item.innerHTML = `
+                    <a href="#" class="announcement-title">${announcement.title}</a>
+                    <span class="announcement-date">${announcement.date}</span>
+                `;
+                announcementList.appendChild(item);
+            });
+
+            // 音频播放器相关代码
+            const audio = new Audio();
+            audio.src = '../resources/songs/school_song.mp3';
+            const playBtn = document.querySelector('.play-btn');
+            const progress = document.querySelector('.progress');
+            const progressBar = document.querySelector('.progress-bar');
+            const currentTime = document.querySelector('.current');
+            const duration = document.querySelector('.duration');
+            const volumeBtn = document.querySelector('.volume-btn');
+            const volumeSlider = document.querySelector('.volume-slider');
+
+            let isPlaying = false;
+
+            // 播放/暂停控制
+            playBtn.addEventListener('click', () => {
+                if (!isPlaying) {
+                    audio.play().catch(error => {
+                        console.error('播放失败:', error);
+                    });
+                    playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                } else {
+                    audio.pause();
+                    playBtn.innerHTML = '<i class="fas fa-play"></i>';
+                }
+                isPlaying = !isPlaying;
+            });
+
+            // 音频结束时重置状态
+            audio.addEventListener('ended', () => {
+                isPlaying = false;
+                playBtn.innerHTML = '<i class="fas fa-play"></i>';
+                progress.style.width = '0%';
+                currentTime.textContent = '0:00';
+            });
+
+            // 更新进度条
+            audio.addEventListener('timeupdate', () => {
+                if (audio.duration) {
+                    const percent = (audio.currentTime / audio.duration) * 100;
+                    progress.style.width = `${percent}%`;
+                    
+                    const currentMin = Math.floor(audio.currentTime / 60);
+                    const currentSec = Math.floor(audio.currentTime % 60);
+                    currentTime.textContent = `${currentMin}:${currentSec.toString().padStart(2, '0')}`;
+                }
+            });
+
+            // 加载完成后显示总时长
+            audio.addEventListener('loadedmetadata', () => {
+                const totalMin = Math.floor(audio.duration / 60);
+                const totalSec = Math.floor(audio.duration % 60);
+                duration.textContent = `${totalMin}:${totalSec.toString().padStart(2, '0')}`;
+            });
+
+            // 点击进度条跳转
+            progressBar.addEventListener('click', (e) => {
+                const rect = progressBar.getBoundingClientRect();
+                const percent = (e.clientX - rect.left) / rect.width;
+                if (audio.duration) {
+                    audio.currentTime = percent * audio.duration;
+                    progress.style.width = `${percent * 100}%`;
+                }
+            });
+
+            // 音量控制
+            volumeSlider.addEventListener('input', () => {
+                const volume = volumeSlider.value / 100;
+                audio.volume = volume;
+                updateVolumeIcon(volume);
+            });
+
+            // 静音控制
+            volumeBtn.addEventListener('click', () => {
+                if (audio.volume > 0) {
+                    audio.volume = 0;
+                    volumeSlider.value = 0;
+                } else {
+                    audio.volume = 1;
+                    volumeSlider.value = 100;
+                }
+                updateVolumeIcon(audio.volume);
+            });
+
+            // 更新音量图标
+            function updateVolumeIcon(volume) {
+                if (volume === 0) {
+                    volumeBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+                } else if (volume < 0.5) {
+                    volumeBtn.innerHTML = '<i class="fas fa-volume-down"></i>';
+                } else {
+                    volumeBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+                }
+            }
+
+            // 初始化音量
+            audio.volume = volumeSlider.value / 100;
+            updateVolumeIcon(audio.volume);
+
+            // 错误处理
+            audio.addEventListener('error', (e) => {
+                console.error('音频加载错误:', e);
+                alert('音频文件加载失败，请检查文件路径是否正确');
+            });
+
+            // 为每个视频添加控制功能
+            document.querySelectorAll('.video-card').forEach(card => {
+                const video = card.querySelector('video');
+                const playBtn = card.querySelector('.play-btn');
+                const progress = card.querySelector('.progress');
+                const progressBar = card.querySelector('.progress-bar');
+                const currentTime = card.querySelector('.current-time');
+                const duration = card.querySelector('.duration');
+                const volumeBtn = card.querySelector('.volume-btn');
+                const volumeSlider = card.querySelector('.volume-slider');
+                
+                let isPlaying = false;
+
+                // 播放/暂停控制
+                playBtn.addEventListener('click', () => {
+                    if (!isPlaying) {
+                        video.play();
+                        playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                    } else {
+                        video.pause();
+                        playBtn.innerHTML = '<i class="fas fa-play"></i>';
+                    }
+                    isPlaying = !isPlaying;
+                });
+
+                // 更新进度条
+                video.addEventListener('timeupdate', () => {
+                    const percent = (video.currentTime / video.duration) * 100;
+                    progress.style.width = `${percent}%`;
+                    
+                    currentTime.textContent = formatTime(video.currentTime);
+                });
+
+                // 视频加载完成后显示总时长
+                video.addEventListener('loadedmetadata', () => {
+                    duration.textContent = formatTime(video.duration);
+                });
+
+                // 点击进度条跳转
+                progressBar.addEventListener('click', (e) => {
+                    const rect = progressBar.getBoundingClientRect();
+                    const percent = (e.clientX - rect.left) / rect.width;
+                    video.currentTime = percent * video.duration;
+                });
+
+                // 音量控制
+                volumeSlider.addEventListener('input', () => {
+                    video.volume = volumeSlider.value / 100;
+                    updateVolumeIcon(video.volume);
+                });
+
+                // 格式化时间
+                function formatTime(seconds) {
+                    const minutes = Math.floor(seconds / 60);
+                    seconds = Math.floor(seconds % 60);
+                    return `${minutes}:${seconds.toString().padStart(2, '0')}`;
+                }
+
+                // 更新音量图标
+                function updateVolumeIcon(volume) {
+                    if (volume === 0) {
+                        volumeBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+                    } else if (volume < 0.5) {
+                        volumeBtn.innerHTML = '<i class="fas fa-volume-down"></i>';
+                    } else {
+                        volumeBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

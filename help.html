@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>帮助 - 智慧教务系统</title>
+    <link rel="icon" href="resources/images/logo1.webp" type="image/webp">
+</head>
+<body>
+    <div class="help-container">
+        <div class="help-header">
+            <h2>湖北文理学院教务管理系统-帮助中心</h2>
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="搜索帮助内容...">
+                <i class="fas fa-search"></i>
+            </div>
+        </div>
+    
+        <div class="help-content">
+            <div class="help-sidebar">
+                <div class="help-category active" data-category="quick-start">
+                    <i class="fas fa-rocket"></i>
+                    快速入门
+                </div>
+                <div class="help-category" data-category="account">
+                    <i class="fas fa-user-circle"></i>
+                    账号管理
+                </div>
+                <div class="help-category" data-category="course">
+                    <i class="fas fa-book"></i>
+                    选课指南
+                </div>
+                <div class="help-category" data-category="exam">
+                    <i class="fas fa-file-alt"></i>
+                    考试相关
+                </div>
+                <div class="help-category" data-category="other">
+                    <i class="fas fa-question-circle"></i>
+                    其他问题
+                </div>
+            </div>
+    
+            <div class="help-details">
+                <div class="help-section active" id="quick-start">
+                    <h3>快速入门</h3>
+                    <div class="faq-list">
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <i class="fas fa-plus"></i>
+                                如何登录教务系统？
+                            </div>
+                            <div class="faq-answer">
+                                1. 点击右上角的"登录"按钮<br>
+                                2. 输入学号和初始密码（默认为身份证后6位）<br>
+                                3. 首次登录需要修改密码<br>
+                                4. 完成后即可进入系统
+                            </div>
+                        </div>
+    
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <i class="fas fa-plus"></i>
+                                系统支持哪些浏览器？
+                            </div>
+                            <div class="faq-answer">
+                                推荐使用以下浏览器访问系统：<br>
+                                - Chrome 80及以上版本<br>
+                                - Firefox 75及以上版本<br>
+                                - Edge 80及以上版本<br>
+                                - Safari 13及以上版本<br>
+                                注意：不建议使用IE浏览器
+                            </div>
+                        </div>
+    
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <i class="fas fa-plus"></i>
+                                如何查看系统公告？
+                            </div>
+                            <div class="faq-answer">
+                                1. 登录后默认进入首页<br>
+                                2. 在首页可以看到最新公告<br>
+                                3. 点击"查看更多"可以浏览历史公告<br>
+                                4. 重要公告会以红色标记显示
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="help-section" id="account">
+                    <h3>账号管理</h3>
+                    <div class="faq-list">
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <i class="fas fa-plus"></i>
+                                如何修改密码？
+                            </div>
+                            <div class="faq-answer">
+                                1. 登录后点击右上角的用户头像<br>
+                                2. 选择"修改密码"选项<br>
+                                3. 输入原密码和新密码<br>
+                                4. 新密码必须包含字母和数字，长度8-20位<br>
+                                5. 点击确认即可修改成功
+                            </div>
+                        </div>
+    
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <i class="fas fa-plus"></i>
+                                忘记密码怎么办？
+                            </div>
+                            <div class="faq-answer">
+                                方式一：通过邮箱找回<br>
+                                1. 点击登录页面的"忘记密码"<br>
+                                2. 输入学号和注册邮箱<br>
+                                3. 获取验证码并输入<br>
+                                4. 设置新密码<br><br>
+                                
+                                方式二：教务处重置<br>
+                                1. 携带学生证到教务处<br>
+                                2. 填写密码重置申请表<br>
+                                3. 工作人员核实身份后重置
+                            </div>
+                        </div>
+    
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <i class="fas fa-plus"></i>
+                                如何绑定邮箱？
+                            </div>
+                            <div class="faq-answer">
+                                1. 登录后进入"个人信息"页面<br>
+                                2. 点击"绑定邮箱"按钮<br>
+                                3. 输入常用邮箱地址<br>
+                                4. 获取验证码并输入<br>
+                                5. 验证成功后即完成绑定<br>
+                                注意：绑定邮箱后可用于接收重要通知和找回密码
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="help-section" id="course">
+                    <h3>选课指南</h3>
+                    <div class="faq-list">
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <i class="fas fa-plus"></i>
+                                选课的基本流程是什么？
+                            </div>
+                            <div class="faq-answer">
+                                1. 登录系统后点击"选课系统"<br>
+                                2. 查看选课通知和选课指南<br>
+                                3. 在规定时间内进行选课<br>
+                                4. 选课分为以下阶段：<br>
+                                - 预选阶段：可选意向课程<br>
+                                - 正选阶段：确认选课<br>
+                                - 补退选阶段：可补选或退选课程<br>
+                                5. 选课结束后可打印选课结果单
+                            </div>
+                        </div>
+    
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <i class="fas fa-plus"></i>
+                                如何查看课程信息？
+                            </div>
+                            <div class="faq-answer">
+                                1. 进入"课程查询"页面<br>
+                                2. 可按以下条件筛选：<br>
+                                - 课程名称<br>
+                                - 课程代码<br>
+                                - 任课教师<br>
+                                - 上课时间<br>
+                                - 上课地点<br>
+                                3. 点击课程可查看详细信息：<br>
+                                - 课程大纲<br>
+                                - 教材信息<br>
+                                - 考核方式<br>
+                                - 选课要求
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="help-section" id="exam">
+                    <h3>考试相关</h3>
+                    <div class="faq-list">
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <i class="fas fa-plus"></i>
+                                如何查看考试安排？
+                            </div>
+                            <div class="faq-answer">
+                                1. 进入"考试安排"页面<br>
+                                2. 可查看以下信息：<br>
+                                - 考试科目<br>
+                                - 考试时间<br>
+                                - 考试地点<br>
+                                - 座位号<br>
+                                3. 可导出或打印考试安排表<br>
+                                注意：考试前请及时查看是否有变动
+                            </div>
+                        </div>
+    
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <i class="fas fa-plus"></i>
+                                如何查询成绩？
+                            </div>
+                            <div class="faq-answer">
+                                1. 进入"成绩查询"页面<br>
+                                2. 选择学期或学年<br>
+                                3. 可查看以下内容：<br>
+                                - 课程成绩<br>
+                                - 绩点统计<br>
+                                - 成绩分布<br>
+                                - 历史成绩<br>
+                                4. 可导出成绩单
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="help-section" id="other">
+                    <h3>其他问题</h3>
+                    <div class="faq-list">
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <i class="fas fa-plus"></i>
+                                系统使用过程中遇到问题怎么办？
+                            </div>
+                            <div class="faq-answer">
+                                1. 常见问题处理：<br>
+                                - 清除浏览器缓存<br>
+                                - 检查网络连接<br>
+                                - 更换浏览器尝试<br><br>
+                                
+                                2. 联系技术支持：<br>
+                                - 电话：0123-4567890<br>
+                                - 邮箱：support@school.edu.cn<br>
+                                - QQ群：123456789<br><br>
+                                
+                                3. 现场支持：<br>
+                                教务处103室（工作日8:30-17:30）
+                            </div>
+                        </div>
+    
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <i class="fas fa-plus"></i>
+                                如何提交意见反馈？
+                            </div>
+                            <div class="faq-answer">
+                                1. 点击页面底部"意见反馈"<br>
+                                2. 填写反馈内容：<br>
+                                - 问题描述<br>
+                                - 截图附件（可选）<br>
+                                - 联系方式<br>
+                                3. 提交后工作人员会在3个工作日内回复
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <style>
+    .help-container {
+        padding: 20px;
+        background: var(--light-gray);
+        min-height: 100vh;
+    }
+    
+    .help-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+    }
+    
+    .search-box {
+        position: relative;
+        width: 300px;
+    }
+    
+    .search-box input {
+        width: 100%;
+        padding: 10px 15px;
+        padding-right: 40px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 14px;
+    }
+    
+    .search-box i {
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #7f8c8d;
+    }
+    
+    .help-content {
+        display: grid;
+        grid-template-columns: 250px 1fr;
+        gap: 30px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+    
+    .help-sidebar {
+        background: var(--light-gray);
+        padding: 20px 0;
+    }
+    
+    .help-category {
+        padding: 15px 20px;
+        cursor: pointer;
+        transition: all 0.3s;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .help-category i {
+        width: 20px;
+        color: var(--primary-blue);
+    }
+    
+    .help-category.active {
+        background: white;
+        color: var(--primary-blue);
+        font-weight: 500;
+    }
+    
+    .help-category:hover {
+        background: var(--light-blue);
+        color: var(--primary-blue);
+    }
+    
+    .help-details {
+        padding: 30px;
+    }
+    
+    .help-section {
+        display: none;
+    }
+    
+    .help-section.active {
+        display: block;
+    }
+    
+    .help-section h3 {
+        margin-bottom: 20px;
+        color: var(--text-dark);
+    }
+    
+    .faq-list {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .faq-item {
+        border: 1px solid #eee;
+        border-radius: 4px;
+    }
+    
+    .faq-question {
+        padding: 15px 20px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 500;
+    }
+    
+    .faq-question i {
+        font-size: 12px;
+        transition: transform 0.3s;
+    }
+    
+    .faq-item.active .faq-question i {
+        transform: rotate(45deg);
+    }
+    
+    .faq-answer {
+        display: none;
+        padding: 0 20px 15px 50px;
+        color: #666;
+        line-height: 1.6;
+    }
+    
+    .faq-item.active .faq-answer {
+        display: block;
+    }
+    
+    @media (max-width: 768px) {
+        .help-content {
+            grid-template-columns: 1fr;
+        }
+    
+        .help-sidebar {
+            padding: 10px;
+            display: flex;
+            overflow-x: auto;
+            gap: 10px;
+        }
+    
+        .help-category {
+            padding: 10px 15px;
+            white-space: nowrap;
+        }
+    }
+    </style>
+    
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // 分类切换
+        const categories = document.querySelectorAll('.help-category');
+        const sections = document.querySelectorAll('.help-section');
+    
+        categories.forEach(category => {
+            category.addEventListener('click', () => {
+                const targetId = category.getAttribute('data-category');
+                
+                // 更新分类激活状态
+                categories.forEach(c => c.classList.remove('active'));
+                category.classList.add('active');
+                
+                // 更新内容显示
+                sections.forEach(section => {
+                    section.classList.remove('active');
+                    if (section.id === targetId) {
+                        section.classList.add('active');
+                    }
+                });
+            });
+        });
+    
+        // FAQ展开/收起
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                item.classList.toggle('active');
+            });
+        });
+    
+        // 搜索功能
+        const searchInput = document.getElementById('searchInput');
+        const faqQuestions = document.querySelectorAll('.faq-question');
+    
+        searchInput.addEventListener('input', (e) => {
+            const searchText = e.target.value.toLowerCase();
+            
+            faqQuestions.forEach(question => {
+                const faqItem = question.closest('.faq-item');
+                const questionText = question.textContent.toLowerCase();
+                const answerText = faqItem.querySelector('.faq-answer').textContent.toLowerCase();
+    
+                if (questionText.includes(searchText) || answerText.includes(searchText)) {
+                    faqItem.style.display = 'block';
+                } else {
+                    faqItem.style.display = 'none';
+                }
+            });
+        });
+    });
+    </script>
+    
+    
+</body>
+</html>
+

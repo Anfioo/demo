@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="resources/images/logo1.webp" type="image/webp">
+    <title>学生教务系统</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #1e88e5;
+            --dark-blue: #1565c0;
+            --light-blue: #bbdefb;
+            --white: #ffffff;
+            --light-gray: #f5f9ff;
+            --text-dark: #2c3e50;
+            --text-light: #ffffff;
+        }
+
+        .container {
+            display: flex;
+            min-height: calc(100vh - 56px);
+        }
+
+        /* 侧边栏样式 */
+        .sidebar {
+            width: 220px;
+            background-color: var(--white);
+            padding: 20px 0;
+            border-right: 1px solid #e0e0e0;
+        }
+
+        .sidebar .logo {
+            text-align: center;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--light-blue);
+        }
+
+        .menu-group {
+            margin: 10px 0;
+            border-bottom: 1px solid var(--light-blue);
+            padding-bottom: 10px;
+        }
+
+        .menu-title {
+            color: var(--primary-blue);
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .sidebar a {
+            display: block;
+            color: var(--text-dark);
+            text-decoration: none;
+            padding: 12px 20px;
+            transition: all 0.3s;
+            font-size: 14px;
+            border-radius: 0 25px 25px 0;
+            margin: 2px 0;
+        }
+
+        .sidebar a i {
+            margin-right: 8px;
+            width: 20px;
+            text-align: center;
+            color: var(--primary-blue);
+        }
+
+        .sidebar a:hover {
+            background-color: var(--light-blue);
+            color: var(--primary-blue);
+            padding-left: 25px;
+        }
+
+        /* 主内容区域样式 */
+        .main-content {
+            flex: 1;
+            padding: 20px;
+            background-color: var(--light-gray);
+        }
+
+        #router-view {
+            width: 100%;
+            height: calc(100vh - 40px);
+            border: none;
+            background: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+        }
+
+        .logo-image {
+            max-width: 180px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .logo a {
+            padding: 0;
+        }
+
+        .logo a:hover {
+            background-color: transparent;
+            padding-left: 0;
+        }
+
+        /* 顶部导航栏样式 */
+        .top-nav {
+            background-color: var(--primary-blue);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--white);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .top-nav-logo {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .top-nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 14px;
+            transition: all 0.3s;
+            padding: 6px 12px;
+            border-radius: 4px;
+        }
+
+        .top-nav-links a:hover {
+            background-color: var(--dark-blue);
+        }
+
+        .top-nav-links a i {
+            margin-right: 5px;
+        }
+
+        /* 添加活跃状态样式 */
+        .sidebar a.active {
+            background-color: var(--light-blue);
+            color: var(--primary-blue);
+            font-weight: 500;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 60px;
+            }
+
+            .sidebar .menu-title {
+                display: none;
+            }
+
+            .sidebar a span {
+                display: none;
+            }
+
+            .sidebar a i {
+                margin-right: 0;
+                font-size: 18px;
+            }
+
+            .sidebar a {
+                padding: 15px 0;
+                text-align: center;
+            }
+
+            .sidebar a:hover {
+                padding-left: 0;
+            }
+
+            .logo-image {
+                max-width: 40px;
+            }
+        }
+
+        /* 更新页脚样式 */
+        .footer {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            padding: 30px 0;
+        }
+
+        .footer .row {
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .footer .col-md-3,
+        .footer .col-md-5,
+        .footer .col-md-1 {
+            padding: 0 15px;
+        }
+
+        .footer .col-md-3 { width: 25%; }
+        .footer .col-md-5 { width: 41.66%; }
+        .footer .col-md-1 { width: 8.33%; }
+
+        .footx1 img {
+            max-width: 200px;
+            height: auto;
+        }
+
+        .footx2 {
+            text-align: left;
+            line-height: 1.8;
+            font-size: 14px;
+        }
+
+        .footx2 a {
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .footx2 img {
+            vertical-align: middle;
+            margin: 0 5px;
+        }
+
+        .footx4 ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+        }
+
+        .footx4 li {
+            text-align: center;
+        }
+
+        .footx4 img {
+            width: 124px;
+            height: 124px;
+            margin-bottom: 5px;
+        }
+
+        .footx4 p {
+            margin: 5px 0;
+            font-size: 12px;
+        }
+
+        @media (max-width: 768px) {
+            .footer .col-md-3,
+            .footer .col-md-5,
+            .footer .col-md-1 {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+
+            .footx4 ul {
+                justify-content: center;
+            }
+        }
+    </style>
+    <!-- 添加图标库 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <!-- 在container之前添加导航栏 -->
+    <div class="top-nav">
+        <div class="top-nav-logo">
+            <i class="fas fa-university"></i> 湖北文理学院教务管理系统
+            
+        </div>
+   
+            <img src="resources/images/logo.png" alt="教务系统" class="logo-image">
+            <img src="resources/images/xx.png" alt="教务系统" class="logo-image">
+
+        <div class="top-nav-links">
+            <a href="login.html" ><i class="fas fa-sign-in-alt"></i> 登录</a>
+            <a href="register.html" ><i class="fas fa-user-plus"></i> 注册</a>
+            <a href="help.html" ><i class="fas fa-question-circle"></i> 帮助</a>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="sidebar">
+            <div class="logo">
+                <a href="/home" class="router">
+                    <img src="resources/images/index_logo.png" alt="教务系统" class="logo-image">
+                </a>
+            </div>
+            
+            <div class="menu-group">
+                <div class="menu-title">个人中心</div>
+                <a href="/personal-info" class="router"><i class="fas fa-user"></i>个人信息</a>
+                <a href="/messages" class="router"><i class="fas fa-envelope"></i>留言系统</a>
+                <a href="/student-card" class="router"><i class="fas fa-id-card"></i>学籍卡片</a>
+            </div>
+
+            <div class="menu-group">
+                <div class="menu-title">教学信息</div>
+                <a href="/training-program" class="router"><i class="fas fa-graduation-cap"></i>培养方案</a>
+                <a href="/teaching-calendar" class="router"><i class="fas fa-calendar-alt"></i>教学周历</a>
+                <a href="/course-plan" class="router"><i class="fas fa-book"></i>授课计划查询</a>
+            </div>
+
+            <div class="menu-group">
+                <div class="menu-title">成绩查询</div>
+                <a href="/course-grades" class="router"><i class="fas fa-chart-line"></i>课程成绩查询</a>
+                <a href="/exam-grades" class="router"><i class="fas fa-file-alt"></i>考试成绩</a>
+            </div>
+
+            <div class="menu-group">
+                <div class="menu-title">其他功能</div>
+                <a href="/evaluation" class="router"><i class="fas fa-star"></i>学生评教</a>
+                <a href="/classroom-booking" class="router"><i class="fas fa-door-open"></i>教室借用申请</a>
+            </div>
+        </div>
+        <div class="main-content">
+            <iframe id="router-view"></iframe>
+        </div>
+    </div>
+
+    <script>
+        function Vue(parameters) {
+            let vue = {};
+            vue.routes = parameters.routes || [];
+
+            vue.init = function () {
+                document.querySelectorAll(".router").forEach((item) => {
+                    item.addEventListener("click", function (e) {
+                        e.preventDefault();
+                        window.location.hash = this.getAttribute("href");
+                    });
+                });
+
+                window.addEventListener("hashchange", vue.routerChange);
+                vue.routerChange();
+            };
+
+            vue.routerChange = function () {
+                let nowHash = window.location.hash.slice(1);
+                let route = vue.routes.find(route => route.path === nowHash) || vue.routes.find(route => route.path === '*');
+
+                // 移除所有活跃状态
+                document.querySelectorAll(".router").forEach(item => {
+                    item.classList.remove("active");
+                });
+
+                // 添加当前活跃状态
+                if (route) {
+                    document.querySelector(`.router[href="${nowHash}"]`)?.classList.add("active");
+                    if (route.redirect) {
+                        window.location.hash = route.redirect;
+                    } else if (route.component) {
+                        document.querySelector("#router-view").src = route.component;
+                    }
+                }
+            };
+
+            vue.init();
+        }
+
+        new Vue({
+            routes: [
+                { path: '/home', component: 'views/announcements.html' },
+                { path: '/personal-info', component: 'views/personal-info.html' },
+                { path: '/messages', component: 'views/messages.html' },
+                { path: '/student-card', component: 'views/student-card.html' },
+                { path: '/training-program', component: 'views/training-program.html' },
+                { path: '/teaching-calendar', component: 'views/teaching-calendar.html' },
+                { path: '/course-plan', component: 'views/course-plan.html' },
+                { path: '/course-grades', component: 'views/course-grades.html' },
+                { path: '/exam-grades', component: 'views/exam-grades.html' },
+                { path: '/evaluation', component: 'views/evaluation.html' },
+
+                { path: '/classroom-booking', component: 'views/classroom-booking.html' },
+                { path: '/login', component: 'views/login.html' },
+                { path: '/register', component: 'views/register.html' },
+                { path: '/help', component: 'views/help.html' },
+                { path: '*', redirect: '/home' }
+            ]
+        });
+    </script>
+    <footer class="footer">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="footx1">    
+                    <img src="resources/images/dlogo.PNG" alt="学校标志">
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="footx2">
+                    <p>学校地址：湖北省襄阳市隆中路296号</p>
+                    <p>邮政编码：441053</p>
+                    <p>电　　话：（+86-0710）3590876   3591876（传真）</p>
+                    <p>接待/接访电话：0710-3593296（24小时）</p>
+                    <p>版权所有：湖北文理学院</p>
+                    <p>
+                        <a href="https://beian.miit.gov.cn/" target="_blank">备案：鄂ICP备17002353号-1</a>
+                        <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=42060202000064" target="_blank">
+                            <img src="resources/images/batb.png" alt="备案图标">
+                            鄂公网安备 42060202000064号
+                        </a>
+                    </p>
+                    <p>维护制作：党委宣传部</p>
+                </div>
+            </div>
+            <div class="col-md-1">
+                <div class="footx3">
+                    <script type="text/javascript">
+                        document.write(unescape("%3Cspan id='_ideConac' %3E%3C/span%3E%3Cscript src='http://dcs.conac.cn/js/18/000/0000/60727556/CA180000000607275560004.js' type='text/javascript'%3E%3C/script%3E"));
+                    </script>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="footx4">
+                    <ul>
+                        <li style="text-align: center;">
+                           
+                                <img src="resources/images/wx.png" alt="微信">
+                                <p>官方微信</p>
+                        
+                        </li>
+                        <li style="text-align: center;">
+                            
+                                <img src="resources/images/wb.png" alt="微博">
+                                <p>官方微博</p>
+                            
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
